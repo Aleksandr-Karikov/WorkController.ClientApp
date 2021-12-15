@@ -5,9 +5,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using WorkControllerAdmin.Models;
 
-namespace WorkControllerAdmin.ViewModels.BaseViewModels
+namespace WorkController.Client.ViewModels.BaseViewModels
 {
     internal abstract class BaseViewModel: INotifyPropertyChanged
     {

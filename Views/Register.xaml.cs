@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WorkController.Client.ViewModels;
 
 namespace WorkController.Client.Views
 {
@@ -19,9 +21,10 @@ namespace WorkController.Client.Views
     /// </summary>
     public partial class Register : Window
     {
-        public Register()
+        public Register(IHttpClientFactory factory)
         {
             InitializeComponent();
+            DataContext = new RegisterViewModel(factory);
         }
     }
 }

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WorkControllerAdmin.Http.RequstModels.Base;
+using WorkController.Client.Http.RequstModels.Base;
 
-namespace WorkControllerAdmin.Http.RequstModels
+namespace WorkController.Client.Http.RequstModels
 {
     class RegisterModel: BaseRequest
     {
@@ -19,7 +19,7 @@ namespace WorkControllerAdmin.Http.RequstModels
         [JsonProperty("password")]
         public string Password { get; set; }
         [JsonProperty("chiefId")]
-        public string ChiefID { get; set; }
+        public int? ChiefID { get; set; }
 
     }
 }

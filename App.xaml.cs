@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using WorkController.Client.Views;
 
 namespace WorkControllerClient
 {
@@ -25,22 +26,18 @@ namespace WorkControllerClient
 
         private void ConfigureServices(IServiceCollection services)
         {
-            //services.AddSingleton<LoginView>();
-            //services.AddSingleton<RegisterView>();
-            //services.AddHttpClient("WorkController", c =>
-            //{
-            //    c.BaseAddress = new Uri("http://localhost:6341/");
-            //    // Github API versioning
-            //    c.DefaultRequestHeaders.Add("Accept", "application/json");
-            //    // Github requires a user-agent
-            //    //c.DefaultRequestHeaders.Add("Token", Token.AcceptToken);
-            //});
+            services.AddSingleton<Login>();
+            services.AddSingleton<Register>();
+            services.AddHttpClient("WorkController", c =>
+            {
+                c.BaseAddress = new Uri("http://localhost:6341/");
+            });
         }
 
         private void OnStartup(object sender, StartupEventArgs e)
         {
-            //var loginView = _serviceProvider.GetService<LoginView>();
-            //loginView.Show();
+            var loginView = _serviceProvider.GetService<Login>();
+            loginView.Show();
         }
     }
 }

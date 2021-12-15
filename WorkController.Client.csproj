@@ -4,14 +4,11 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Icons\user_target_person_man_icon_193936.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Icons\team_people_man_woman_group_icon_193939.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Icons\team_people_man_woman_group_icon_193939.ico" />
+    <Content Include="Icons\user_target_person_man_icon_193936.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,11 +17,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\WorkConroller.Common\WorkController.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WorkConroller.Common\WorkController.Common.csproj" />
+    <Page Update="Themes\ButtonTheme.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\DataGridTheme.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\TextBoxTheme.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

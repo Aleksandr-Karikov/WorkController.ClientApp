@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\HistoryControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Login.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -16,8 +19,26 @@
     <Compile Update="Views\Register.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\TimerControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Themes\ButtonTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\DataGridTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\MenuButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\TextBoxTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\HistoryControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Login.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -25,6 +46,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Register.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\TimerControl.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

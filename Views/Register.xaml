@@ -5,8 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkController.Client.Views"
         mc:Ignorable="d"
-        Title="Register" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Регистрация" Height="200" Width="600"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Border Background="#272537">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.7*"></RowDefinition>
+                <RowDefinition Height="0.3*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel VerticalAlignment="Center"  Grid.Column="2" Grid.RowSpan="2">
+                <Button 
+                    Style="{StaticResource ButtonTheme}"
+                    Foreground="White"
+                    Margin="5"
+                    Content="Зарегистрироваться"
+                    Height="35"
+                    Command="{Binding RegisterCommand}"/>
+                <Button 
+                    Style="{StaticResource ButtonTheme}"
+                    Foreground="White"
+                    VerticalAlignment="Bottom"
+                    Margin="5"
+                    Content="Уже имею аккаунт"
+                    Height="35"
+                    Command="{Binding LoginCommand}"
+                    />
+            </StackPanel>
+            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                <TextBox Style="{StaticResource ModerTextBox}" Tag="Почта" HorizontalAlignment="Left" Width="130" Text ="{Binding Email, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Height="40" Margin="5" FontSize="17"></TextBox>
+                <TextBox Visibility="{Binding PwdVisible,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ModerTextBox}" Tag="Пароль" HorizontalAlignment="Left" Width="130" Text ="{Binding Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="40" Margin="5" FontSize="17"></TextBox>
+
+            </StackPanel>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" Visibility="{Binding LFVisible,UpdateSourceTrigger=PropertyChanged}">
+                <TextBox Style="{StaticResource ModerTextBox}" Tag="Фамилия" HorizontalAlignment="Left" Width="130" Text ="{Binding LastName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Height="40" Margin="5" FontSize="17"></TextBox>
+                <TextBox Style="{StaticResource ModerTextBox}" Tag="Имя" HorizontalAlignment="Left" Width="130" Text ="{Binding FirstName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="40" Margin="5" FontSize="17"></TextBox>
+            </StackPanel>
+            <TextBox 
+                Style="{StaticResource ModerTextBox}"
+                Tag="Код начальника"
+                Width="150" Text ="{Binding ChiefId, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                Height="40"
+                Margin="5" 
+                FontSize="17"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"/>
+            <RadioButton
+                Grid.Column="3"
+                Grid.Row="2"
+                Content="Имею аккаунт в панеле начальников"
+                Foreground="White"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,10"
+                IsChecked="{Binding IsChecked,UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+    </Border>
 </Window>

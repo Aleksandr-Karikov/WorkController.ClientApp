@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WorkControllerAdmin.Commands.BaseCommands;
+using WorkController.Client.Commands.BaseCommands;
 
-namespace WorkControllerAdmin.Commands
+namespace WorkController.Client.Commands
 {
     internal class LamdaCommand : BaseCommand
     {

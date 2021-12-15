@@ -5,8 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkController.Client.Views"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Вход" Height="200" Width="400"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Border Background="#272537">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.6*"></ColumnDefinition>
+                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel></StackPanel>
+            <StackPanel VerticalAlignment="Center"  Grid.Column="1" Margin="0,0,10,0">
+                <Button 
+                    
+                    Style="{StaticResource ButtonTheme}"
+                    Margin="5"
+                    Content="Зарегистрироваться"
+                    Height="35"
+                    Command="{Binding RegisterCommand}"
+                    Foreground="White"/>
+                <Button 
+                    Style="{StaticResource ButtonTheme}"
+                    VerticalAlignment="Bottom"
+                    Margin="5"
+                    Content="Войти"
+                    Height="35"
+                    Command="{Binding LoginCommand}"
+                    Foreground="White"/>
+            </StackPanel>
+            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                <TextBox Style="{StaticResource ModerTextBox}" 
+                         HorizontalAlignment="Left"
+                         Width="180" 
+                         Text ="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                         FontSize="17"
+                         Height="40"
+                         Margin="20,0,0,5"
+                         Tag="Почта"/>
+                <TextBox Style="{StaticResource ModerTextBox}"
+                         HorizontalAlignment="Left"
+                         Width="180" 
+                         Height="40"
+                         FontSize="17"
+                         Text ="{Binding ViewPassword, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                         Margin="20,0,0,5"
+                         Tag="Пароль"/>
+
+            </StackPanel>
+
+        </Grid>
+    </Border>
 </Window>

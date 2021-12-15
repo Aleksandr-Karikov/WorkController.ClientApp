@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkController.Client.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        ResizeMode="NoResize" Height="450" Width="800"
+        WindowStyle="None">
+    <Border Background="#ABCDEF" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" Margin="10,20,10,20">
+                <RadioButton Style="{StaticResource MenuButtonTheme}"
+                        FontSize="20"   
+                        Height="180"
+                        Content="Таймер"
+                        Command="{Binding TimerCommand}"
+                        IsChecked="True"
+                        />
+                <RadioButton Style="{StaticResource MenuButtonTheme}"
+                        FontSize="20"   
+                        Height="180"
+                        Content="История"
+                        Command="{Binding HistoryCommand}"/>
+            </StackPanel>
+            
+            <ContentControl
+                Grid.Row="1"
+                Grid.Column="1"
+                Content="{Binding CurentView}"/>
+
+
+        </Grid>
+    </Border>
 </Window>

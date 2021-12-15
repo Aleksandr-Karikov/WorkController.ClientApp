@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WorkControllerAdmin.Http.RequstModels.Base;
-
-namespace WorkControllerAdmin.Http.RequstModels
+using WorkController.Client.Http.RequstModels.Base;
+namespace WorkController.Client.Http.RequstModels
 {
     internal class LoginModel:BaseRequest
     {

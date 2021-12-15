@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WorkController.Common.Helper;
 
-namespace WorkControllerAdmin.Http.RequstModels.Base
+namespace WorkController.Client.Http.RequstModels.Base
 {
     internal class BaseRequest:IRequest
     {
