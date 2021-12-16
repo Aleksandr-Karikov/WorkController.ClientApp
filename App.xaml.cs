@@ -16,7 +16,7 @@ namespace WorkControllerClient
     public partial class App : Application
     {
         private readonly ServiceProvider _serviceProvider;
-
+        private LoginVewModel LoginVM { get; set; }
         public App()
         {
             var serviceCollection = new ServiceCollection();

@@ -8,7 +8,7 @@
         Title="Регистрация" Height="200" Width="600"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
-    <Border Background="#272537">
+    <Border Background="#FF8000">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.3*"></ColumnDefinition>

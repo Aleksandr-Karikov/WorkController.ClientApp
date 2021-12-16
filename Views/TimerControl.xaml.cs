@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkController.Client.Models;
 using WorkController.Client.ViewModels;
 
 namespace WorkController.Client.Views
@@ -24,7 +25,7 @@ namespace WorkController.Client.Views
         public TimerControl()
         {
             InitializeComponent();
-            DataContext = new TimerViewModel();
+          //  DataContext = new TimerViewModel();
         }
     }
 }

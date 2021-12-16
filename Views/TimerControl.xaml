@@ -18,18 +18,18 @@
                                Foreground="Black"
                                FontSize="100"
                                Width="Auto"
-                               Text="00:00:00" FontFamily="Toledo Heavy" FontWeight="Normal"
+                               Text="{Binding Timer,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontFamily="Toledo Heavy" FontWeight="Normal"
                                />
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20" HorizontalAlignment="Center">
-                <Button Content="Начать работу" Width="150" Margin="10"/>
-                <Button Content="Перерыв" Width="150" Margin="10"/>
-                <Button Content="Закончить рабочий день" Width="150" Margin="10"/>
+                <Button Command="{Binding StartCommand}" FontSize="20" Content="Начать работу" Width="150" Margin="10" Style="{StaticResource ButtonTheme}"/>
+                <Button Command="{Binding StopCommand}" FontSize="20" Content="Перерыв" Width="150" Margin="10"  Style="{StaticResource ButtonTheme}"/>
+                <Button Command="{Binding SendCommand}" FontSize="20" Content="Закончить работу"  Width="170" Margin="10" Style="{StaticResource ButtonTheme}"/>
             </StackPanel>
         </Grid>
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                 <GradientStop Color="DarkBlue" Offset="0.0"></GradientStop>
-                <GradientStop Color="#7FFFD4" Offset="0.0"></GradientStop>
+                <GradientStop Color="#FFFF00" Offset="0.0"></GradientStop>
             </LinearGradientBrush>
         </Border.Background>
         <Border.Clip>

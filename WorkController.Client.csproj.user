@@ -36,6 +36,9 @@
     <Page Update="Themes\TextBoxTheme.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Themes\UpperMenuButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\HistoryControl.xaml">
       <SubType>Designer</SubType>
     </Page>

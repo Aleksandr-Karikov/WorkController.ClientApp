@@ -18,14 +18,14 @@ namespace WorkController.Client.ViewModels
         public MainWindowViewModel(User user)
         {
             this.user = user;
-            TymerVM = new TimerViewModel();
+            TymerVM = new TimerViewModel(user);
             curentView = TymerVM;
-            HistoryVM = new HistoryViewModel();
+            HistoryVM = new HistoryViewModel(user);
 
             HistoryCommand = new LamdaCommand(OnHistoryCommandExecute, CanHistoryCommandExecute);
             TimerCommand = new LamdaCommand(OnTimerCommandExecute, CanTimerCommandExecute);
         }
-        private User user;
+        private readonly User user;
 
         private object curentView;
         public object CurentView

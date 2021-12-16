@@ -184,10 +184,10 @@ namespace WorkController.Client.ViewModels
         private bool CanLoginCommandExecute(object p) => true;
         private void OnLoginCommandExecute(object p)
         {
-            var a = new Login(factory);
-            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
-            window.Close();
-            a.Show();
+            //var a = new Login(factory);
+            //var window = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
+            //window.Close();
+            //a.Show();
 
         }
         #endregion

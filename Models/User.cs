@@ -35,7 +35,7 @@ namespace WorkController.Client.Models
         private string token;
         private int id;
         private int chiefId;
-        public Stopwatch stopwatch;
+        private Stopwatch stopwatch;
         #endregion
         #region Properties
         public string Email
@@ -96,6 +96,35 @@ namespace WorkController.Client.Models
         #endregion
 
 
+        public void StratTimer()
+        {
+            stopwatch.Start();
+        }
+        public void StopTimer()
+        {
+            stopwatch.Stop();
+        }
+        public async Task SendTime()
+        {
+            stopwatch.Reset();
+        }
+        public bool IsTimerEnabled()
+        {
+            return stopwatch.IsRunning;
+        }
+        public string GetStringTime()
+        {
+           var Time =  stopwatch.Elapsed;
 
+           string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}",
+           Time.Hours, Time.Minutes, Time.Seconds);
+
+           return elapsedTime;
+        }
+        public TimeSpan GetTime()
+        {
+
+            return stopwatch.Elapsed;
+        }
     }
 }
