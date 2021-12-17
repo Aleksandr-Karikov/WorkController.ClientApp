@@ -10,6 +10,12 @@ using System.Windows;
 using WorkController.Common;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using WorkController.Common.Http.Helper;
+
+using System.IO.IsolatedStorage;
+using System.IO;
+using WorkController.Common.Http.Helper.ApiHelper;
+using WorkController.Client.Http.RequstModels;
 
 namespace WorkController.Client.Models
 {
@@ -95,7 +101,20 @@ namespace WorkController.Client.Models
         }
         #endregion
 
-
+        public async Task<bool> IsConnectionAlive()
+        {
+            return await RequestHelper.IsConnectionAlive(factory);
+        }
+        //private void SaveDatasLocal()
+        //{
+        //    States.StartTime = stopwatch.Elapsed.ToString();
+        //    IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForDomain();
+        //    using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream("Timer", FileMode.Create, storage))
+        //    using (StreamWriter writer = new StreamWriter(stream))
+        //    {
+        //        writer.WriteLine(States.StartTime);
+        //    }
+        //}
         public void StratTimer()
         {
             stopwatch.Start();
@@ -106,6 +125,14 @@ namespace WorkController.Client.Models
         }
         public async Task SendTime()
         {
+
+            await RequestHelper.SendPostAuthRequest(ApiHelperUri.SetTime, factory, Token, new TimeModel()
+            {
+                Date = DateTime.Now.Date,
+                Id = ID,
+                Time = (int)stopwatch.ElapsedMilliseconds
+            }) ;
+            //SaveDatasLocal();
             stopwatch.Reset();
         }
         public bool IsTimerEnabled()
@@ -114,12 +141,12 @@ namespace WorkController.Client.Models
         }
         public string GetStringTime()
         {
-           var Time =  stopwatch.Elapsed;
+            TimeSpan time;
+            time = stopwatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}",
+            time.Hours, time.Minutes, time.Seconds);
 
-           string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}",
-           Time.Hours, Time.Minutes, Time.Seconds);
-
-           return elapsedTime;
+            return elapsedTime;
         }
         public TimeSpan GetTime()
         {

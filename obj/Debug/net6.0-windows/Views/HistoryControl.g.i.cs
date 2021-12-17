@@ -53,7 +53,7 @@ namespace WorkController.Client.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WorkController.Client;component/views/historycontrol.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WorkController.Client;V1.0.0.0;component/views/historycontrol.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\HistoryControl.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

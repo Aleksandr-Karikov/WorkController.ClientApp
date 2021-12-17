@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -19,6 +21,7 @@ namespace WorkController.Client.ViewModels
         public TimerViewModel(User user)
         {
             this.user = user;
+            
             StartCommand = new LamdaCommand(OnStartCommandExecute, CanStartCommandExecute);
             StopCommand = new LamdaCommand(OnStopCommandExecute, CanStopCommandExecute);
             SendCommand = new LamdaCommand(OnSendCommandExecute, CanSendCommandExecute);
@@ -40,11 +43,15 @@ namespace WorkController.Client.ViewModels
             Timer = user.GetStringTime();
         }
 
-        private void SetTime()
+        private async void SetTime()
         {
             while (user.IsTimerEnabled())
             {
                 Timer = user.GetStringTime();
+                if (user.GetTime().Hours>=24)
+                {
+                    await SendRezult();
+                }
                 Thread.Sleep(1000);
             }
             
@@ -79,12 +86,16 @@ namespace WorkController.Client.ViewModels
             if (user.GetTime()==TimeSpan.MinValue) return false;
             return true;
         }
-        private async void OnSendCommandExecute(object p)
+        public async Task SendRezult()
         {
             await user.SendTime();
             UpdateTimer();
         }
-
+        private async void OnSendCommandExecute(object p)
+        {
+            await SendRezult();
+        }
+        
 
     }
 }
