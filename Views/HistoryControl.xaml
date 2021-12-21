@@ -5,8 +5,72 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WorkController.Client.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="395" d:DesignWidth="600">
     <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" FontSize="20" Margin="10,0,0,0"> История </Label>
+            <StackPanel Orientation="Horizontal" Grid.Row="0"  Grid.ColumnSpan="2"   HorizontalAlignment="Center">
+                <DatePicker 
+                                Width="100"
+                                Height="25"
+                                SelectedDate="{Binding SelectedDate,StringFormat='dd.MM.yyyy'}"
+                                Foreground="Black"
+                                >
+                    <DatePicker.Resources>
+                        <Style TargetType="{x:Type DatePickerTextBox}">
+                            <Setter Property="Background" Value="BlueViolet">
+                            </Setter>
+                            <Setter Property="Control.Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <TextBox x:Name="PART_TextBox"
+     Text="{Binding SelectedDate,UpdateSourceTrigger=PropertyChanged, StringFormat='dd.MM.yyyy', 
+     RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+
+                        </Style>
+                    </DatePicker.Resources>
+                </DatePicker>
+                <RadioButton Content="Применить"
+                                     Foreground="Black"
+                                     VerticalAlignment="Center"
+                                     IsChecked="{Binding RadioButtonFilter,UpdateSourceTrigger=PropertyChanged}"
+                                     />
+            </StackPanel>
+            <DataGrid Grid.Row="1" Grid.ColumnSpan="2"  
+                          IsReadOnly="True"
+                          HorizontalContentAlignment="Center"
+                          ItemsSource="{Binding CurentTimes, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                          RowStyle="{StaticResource DataGridRowStyle1}"
+                          Margin="20"
+                          Background="Transparent"
+                          AutoGenerateColumns="False"
+                          RowHeaderWidth="0" 
+                          SelectedItem="{Binding CurentTime,Mode=TwoWay}"
+                          SelectionMode="Single"
+                          >
+                <DataGrid.Columns>
+                    <DataGridTextColumn  Header="Дата" Binding="{Binding DateTime,StringFormat='dd.MM.yyyy'}" Width="0.3*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Время работы" Binding="{Binding TimeString}" Width="0.3*"></DataGridTextColumn>
+                </DataGrid.Columns>
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FF262626" />
+                        <Setter Property="Foreground" Value="White"></Setter>
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
+        </Grid>
         
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">

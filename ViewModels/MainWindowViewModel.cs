@@ -31,6 +31,7 @@ namespace WorkController.Client.ViewModels
             HistoryCommand = new LamdaCommand(OnHistoryCommandExecute, CanHistoryCommandExecute);
             TimerCommand = new LamdaCommand(OnTimerCommandExecute, CanTimerCommandExecute);
             CloseCommand = new LamdaCommand(OnCloseCommandExecute, CanCloseCommandExecute);
+            ChangeUserCommand = new LamdaCommand(OnChangeUserCommandExecute, CanChangeUserCommandExecute);
             OnStart();
 
 
@@ -72,6 +73,7 @@ namespace WorkController.Client.ViewModels
         private void OnHistoryCommandExecute(object p)
         {
             CurentView = HistoryVM;
+            HistoryVM.Update();
         }
 
         public ICommand CloseCommand { get; }
@@ -99,6 +101,22 @@ namespace WorkController.Client.ViewModels
                     MessageBox.Show("Подключение разорвано");
                     Thread.Sleep(10000);
                 }
+            }
+        }
+
+        public ICommand ChangeUserCommand { get; }
+        private bool CanChangeUserCommandExecute(object p)
+        {
+            return true;
+        }
+        private void OnChangeUserCommandExecute(object p)
+        {
+
+            new Login(user.Factory).Show();
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window is Login) continue;
+                window.Close();
             }
         }
     }

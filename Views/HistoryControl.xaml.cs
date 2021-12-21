@@ -25,7 +25,7 @@ namespace WorkController.Client.Views
         public HistoryControl()
         {
             InitializeComponent();
-           // DataContext = new HistoryViewModel(user);
+          //  DataContext = new HistoryViewModel(user);
         }
     }
 }

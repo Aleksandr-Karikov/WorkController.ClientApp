@@ -46,3 +46,4 @@ C:\Users\Александр\source\repos\WorkController\WorkController.ClientApp
 C:\Users\Александр\source\repos\WorkController\WorkController.ClientApp\obj\Debug\net6.0-windows\Views\HistoryControl.g.cs
 C:\Users\Александр\source\repos\WorkController\WorkController.ClientApp\obj\Debug\net6.0-windows\Views\HistoryControl.baml
 C:\Users\Александр\source\repos\WorkController\WorkController.ClientApp\obj\Debug\net6.0-windows\Themes\UpperMenuButton.baml
+C:\Users\Александр\source\repos\WorkController\WorkController.ClientApp\bin\Debug\net6.0-windows\Analytics.dll

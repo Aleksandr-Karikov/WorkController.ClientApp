@@ -139,8 +139,9 @@ namespace WorkController.Client.ViewModels
                     LastName = user.LastName,
                     Token = user.Token,
                     ID = user.ID,
-                    ChiefId = user.ChiefId
-                });
+                    ChiefId = user.ChiefId,
+                    ScreenShotPeriod = user.ScreenShotPeriod
+                }) ;
                 var window = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
                 window.Close();
                 newWindow.Show();

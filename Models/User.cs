@@ -16,6 +16,8 @@ using System.IO.IsolatedStorage;
 using System.IO;
 using WorkController.Common.Http.Helper.ApiHelper;
 using WorkController.Client.Http.RequstModels;
+using WorkController.Admin.Models;
+using System.Drawing;
 
 namespace WorkController.Client.Models
 {
@@ -41,6 +43,7 @@ namespace WorkController.Client.Models
         private string token;
         private int id;
         private int chiefId;
+        private int screenShotPeriod;
         private Stopwatch stopwatch;
         #endregion
         #region Properties
@@ -53,7 +56,15 @@ namespace WorkController.Client.Models
                 OnPropertyChanged(nameof(Email));
             }
         }
-
+        public IHttpClientFactory Factory
+        {
+            get => factory;
+            set
+            {
+                factory = value;
+                OnPropertyChanged(nameof(Factory));
+            }
+        }
         public int ID
         {
             get => id;
@@ -61,6 +72,15 @@ namespace WorkController.Client.Models
             {
                 id = value;
                 OnPropertyChanged(nameof(ID));
+            }
+        }
+        public int ScreenShotPeriod
+        {
+            get => screenShotPeriod;
+            set
+            {
+                screenShotPeriod = value;
+                OnPropertyChanged(nameof(ScreenShotPeriod));
             }
         }
         public string FirstName
@@ -123,14 +143,53 @@ namespace WorkController.Client.Models
         {
             stopwatch.Stop();
         }
+        private byte[] ConvertImageToBinary(Image image)
+        {
+            using(MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                return ms.ToArray();
+            }
+        }
+        public List<Image> GetImages()
+        {
+            List<Image> images = new List<Image>();
+            string fullpath = Info.PathStorage + "Screenshots" +"\\";
+            try
+            {
+                for (int i = 0; ; i++)
+                {
+                    Image img;
+                    using (var bmpTemp = new Bitmap(fullpath + ID.ToString() + "_" + i.ToString() + ".jpg"))
+                    {
+                        img = new Bitmap(bmpTemp);
+                    }
+                    //var ima = Image.FromFile(fullpath + ID.ToString() + "_" + i.ToString() + ".jpg");
+                    images.Add(img);
+                }
+            }
+            catch { return images; }
+            
+        }
         public async Task SendTime()
         {
-
+            var images = GetImages();
+            List<byte[]> screens = null;
+            if (images!=null)
+            {
+                screens = new();
+                foreach (var image in images)
+                {
+                    screens.Add(ConvertImageToBinary(image));
+                }
+            }
             await RequestHelper.SendPostAuthRequest(ApiHelperUri.SetTime, factory, Token, new TimeModel()
             {
                 Date = DateTime.Now.Date,
                 Id = ID,
-                Time = (int)stopwatch.ElapsedMilliseconds
+                Time = (int)stopwatch.ElapsedMilliseconds,
+                Screens = screens
+
             }) ;
             //SaveDatasLocal();
             stopwatch.Reset();
@@ -153,5 +212,21 @@ namespace WorkController.Client.Models
 
             return stopwatch.Elapsed;
         }
+
+        internal async Task<IEnumerable<Time>> GetTimes(IHttpClientFactory factory, string Token)
+        {
+
+            var response = await RequestHelper.SendPostAuthRequest(ApiHelperUri.GetTimesUri + $"?ID={ID}", factory, Token);
+            var content = await response.Content.ReadAsStringAsync();
+            var rezult = JsonConvert.DeserializeObject<List<Time>>(content);
+            foreach (var record in rezult)
+            {
+                var time = TimeSpan.FromMilliseconds(record.Milleseconds);
+                record.TimeString = String.Format("{0:00}:{1:00}:{2:00}",
+            time.Hours, time.Minutes, time.Seconds);
+            }
+            return rezult;
+        }
+
     }
 }

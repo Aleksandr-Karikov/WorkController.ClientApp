@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-
+            <Label FontSize="25" FontWeight="Black"> WorkTracker </Label>
             <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Top" Margin="10,20,10,20">
                 <RadioButton Style="{StaticResource MenuButtonTheme}"
                         FontSize="20"   
@@ -33,9 +33,9 @@
                         Command="{Binding HistoryCommand}"
                              />
             </StackPanel>
-            <StackPanel Margin="4" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
-                <Button Style="{StaticResource ButtonTheme}" Width="130" Height="30" Margin="4" Background="#00BFFF">Сменить пользователя</Button>
-                <Button Command="{Binding CloseCommand}" Style="{StaticResource ButtonTheme}" Width="80" Height="30" Margin="4" Background="#00BFFF">Выйти</Button>
+            <StackPanel Margin="4" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal"> 
+                <Button Command="{Binding ChangeUserCommand}" Style="{StaticResource ButtonTheme}" Width="130" Height="30" Margin="4" Background="#A52A2A">Сменить пользователя</Button>
+                <Button Command="{Binding CloseCommand}" Style="{StaticResource ButtonTheme}" Width="80" Height="30" Margin="4" Background="#A52A2A">Выйти</Button>
             </StackPanel>
             <ContentControl
                 Grid.Row="1"

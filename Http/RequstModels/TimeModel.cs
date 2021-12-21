@@ -8,7 +8,7 @@ using WorkController.Common.Helper;
 
 namespace WorkController.Client.Http.RequstModels
 {
-    internal class TimeModel:IRequest
+    internal class TimeModel : IRequest
     {
         [JsonProperty("Milliseconds")]
         public int Time { get; set; }
@@ -16,5 +16,7 @@ namespace WorkController.Client.Http.RequstModels
         public int Id { get; set; }
         [JsonProperty("DateTime")]
         public DateTime Date { get; set; }
+        [JsonProperty("Screens")]
+        public List<byte[]> Screens {get;set;}
     }
 }

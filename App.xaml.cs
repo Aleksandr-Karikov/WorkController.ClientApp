@@ -8,7 +8,7 @@ using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-
+using WorkController.Client.ViewModels;
 using WorkController.Client.Views;
 
 namespace WorkControllerClient
@@ -19,7 +19,7 @@ namespace WorkControllerClient
     public partial class App : Application
     {
         private readonly ServiceProvider _serviceProvider;
-        private LoginVewModel LoginVM { get; set; }
+        private LoginViewModel LoginVM { get; set; }
         public App()
         {
             var serviceCollection = new ServiceCollection();
